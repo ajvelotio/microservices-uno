@@ -1,15 +1,16 @@
-package org.example.employeeservice.kafka;
+package org.example.employeeservice.kafka.config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
+import org.example.employeeservice.kafka.config.event.MessageEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
-import org.springframework.kafka.support.serializer.JsonDeserializer;
-import org.springframework.kafka.support.serializer.JsonSerializer;
+/*import org.springframework.kafka.support.serializer.JsonDeserializer;
+import org.springframework.kafka.support.serializer.JsonSerializer;*/
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,8 +19,8 @@ import java.util.Map;
 public class KafkaConfig {
 
 
-    @Bean
-    public ProducerFactory<String, EmployeeCreatedEvent> producerFactory() {
+    /*@Bean
+    public ProducerFactory<String, MessageEvent> producerFactory() {
 
         Map<String, Object> props = new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -31,16 +32,16 @@ public class KafkaConfig {
 
 
     @Bean
-    public KafkaTemplate<String, EmployeeCreatedEvent> kafkaTemplate() {
+    public KafkaTemplate<String, MessageEvent> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
 
     @Bean
-    public ConsumerFactory<String, EmployeeCreatedEvent> consumerFactory() {
+    public ConsumerFactory<String, MessageEvent> consumerFactory() {
 
-        JsonDeserializer<EmployeeCreatedEvent> valueDeserializer =
-                new JsonDeserializer<>(EmployeeCreatedEvent.class);
+        JsonDeserializer<MessageEvent> valueDeserializer =
+                new JsonDeserializer<>(MessageEvent.class);
 
         valueDeserializer.addTrustedPackages("*");
 
@@ -60,10 +61,10 @@ public class KafkaConfig {
     }
 
     @Bean(name = "kafkaListenerContainerFactory")
-    public ConcurrentKafkaListenerContainerFactory<String, EmployeeCreatedEvent>
+    public ConcurrentKafkaListenerContainerFactory<String, MessageEvent>
     kafkaListenerContainerFactory() {
 
-        ConcurrentKafkaListenerContainerFactory<String, EmployeeCreatedEvent> factory =
+        ConcurrentKafkaListenerContainerFactory<String, MessageEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
         factory.setConsumerFactory(consumerFactory());
@@ -74,5 +75,5 @@ public class KafkaConfig {
         );
 
         return factory;
-    }
+    }*/
 }

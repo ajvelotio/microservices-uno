@@ -1,5 +1,6 @@
-package org.example.employeeservice.kafka;
+package org.example.employeeservice.kafka.config;
 
+import org.example.employeeservice.kafka.config.event.MessageEvent;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +10,21 @@ public class KafkaProducerService {
 
     private static final String TOPIC = "employee.created";
 
-    private final KafkaTemplate<String, EmployeeCreatedEvent> kafkaTemplate;
+    /*private final KafkaTemplate<String, MessageEvent> kafkaTemplate;
 
     public KafkaProducerService(
-            KafkaTemplate<String, EmployeeCreatedEvent> kafkaTemplate) {
+            KafkaTemplate<String, MessageEvent> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    /**
+    *//**
      * Publishes EmployeeCreatedEvent to Kafka
      * Key = employeeId (guarantees ordering per employee)
-     */
-    public void publish(EmployeeCreatedEvent event) {
+     *//*
+    public void publish(MessageEvent event) {
         kafkaTemplate.send(
-                TOPIC,
-                event.getEmployeeId(), // key
+                TOPIC, event.getId(), // key
                 event
         );
-    }
+    }*/
 }

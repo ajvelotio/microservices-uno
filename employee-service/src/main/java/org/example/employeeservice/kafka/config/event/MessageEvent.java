@@ -1,4 +1,4 @@
-package org.example.employeeservice.event;
+package org.example.employeeservice.kafka.config.event;
 
 public class MessageEvent {
 
